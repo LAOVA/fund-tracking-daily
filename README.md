@@ -1,4 +1,4 @@
-# 追基日报（实时追踪您的基金投资组合 - Fund Tracking Daily）
+# 追基日报（实时追踪您的基金组合 - Fund Tracking Daily）
 
 > 一份可以管理基金的「电子报纸」
 
