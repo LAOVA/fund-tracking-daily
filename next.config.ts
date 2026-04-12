@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === "production" ? "/daily-fund-tracker" : "",
+  basePath: process.env.NODE_ENV === "production" ? "/fund-tracking-daily" : "",
 };
 
 export default nextConfig;
