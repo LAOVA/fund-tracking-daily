@@ -76,7 +76,7 @@ const FundTableRow = memo(function FundTableRow({
           <span
             className={cn(
               "font-['JetBrains_Mono'] font-bold",
-              getChangeColor(todayEarnings)
+              getChangeColor(todayEarnings),
             )}
           >
             {formatCurrency(todayEarnings)}
@@ -93,7 +93,7 @@ const FundTableRow = memo(function FundTableRow({
       <td className="text-right py-4 px-4">
         <span
           className={`font-['JetBrains_Mono'] font-bold ${getChangeColor(
-            fund.estimatedGrowthRate || 0
+            fund.estimatedGrowthRate || 0,
           )}`}
         >
           {fund.estimatedGrowthRate !== undefined
@@ -110,7 +110,7 @@ const FundTableRow = memo(function FundTableRow({
       <td className="text-right py-4 px-4">
         <span
           className={`font-['JetBrains_Mono'] ${getChangeColor(
-            fund.yesterdayChange || 0
+            fund.yesterdayChange || 0,
           )}`}
         >
           {fund.yesterdayChange !== undefined
@@ -135,12 +135,12 @@ const FundTableRow = memo(function FundTableRow({
               className={cn(
                 "font-['JetBrains_Mono'] font-bold flex items-center justify-end gap-1",
                 getChangeColor(
-                  fund.shares * (fund.estimatedNetValue - fund.costPrice)
-                )
+                  fund.shares * (fund.estimatedNetValue - fund.costPrice),
+                ),
               )}
             >
               {formatCurrency(
-                fund.shares * (fund.estimatedNetValue - fund.costPrice)
+                fund.shares * (fund.estimatedNetValue - fund.costPrice),
               )}
             </span>
             <span
@@ -148,13 +148,13 @@ const FundTableRow = memo(function FundTableRow({
                 "text-xs font-['JetBrains_Mono'] block",
                 getChangeColor(
                   ((fund.estimatedNetValue - fund.costPrice) / fund.costPrice) *
-                    100
-                )
+                    100,
+                ),
               )}
             >
               {formatPercent(
                 ((fund.estimatedNetValue - fund.costPrice) / fund.costPrice) *
-                  100
+                  100,
               )}
             </span>
           </div>
@@ -204,7 +204,7 @@ const FundMobileCard = memo(function FundMobileCard({
               <span
                 className={cn(
                   "font-['JetBrains_Mono'] font-bold text-sm flex items-center gap-1",
-                  getChangeColor(fund.estimatedGrowthRate)
+                  getChangeColor(fund.estimatedGrowthRate),
                 )}
               >
                 {getTrendIcon(fund.estimatedGrowthRate)}
@@ -247,7 +247,7 @@ const FundMobileCard = memo(function FundMobileCard({
             <div
               className={cn(
                 "font-['JetBrains_Mono']",
-                getChangeColor(fund.yesterdayChange || 0)
+                getChangeColor(fund.yesterdayChange || 0),
               )}
             >
               {fund.yesterdayChange !== undefined
@@ -264,12 +264,12 @@ const FundMobileCard = memo(function FundMobileCard({
                 className={cn(
                   "font-['JetBrains_Mono'] font-bold",
                   getChangeColor(
-                    fund.shares * (fund.estimatedNetValue - fund.costPrice)
-                  )
+                    fund.shares * (fund.estimatedNetValue - fund.costPrice),
+                  ),
                 )}
               >
                 {formatCurrency(
-                  fund.shares * (fund.estimatedNetValue - fund.costPrice)
+                  fund.shares * (fund.estimatedNetValue - fund.costPrice),
                 )}
               </div>
             </div>
@@ -289,67 +289,72 @@ export function ValuationTable() {
   const fetchingCodesRef = useRef<Set<string>>(new Set());
   const hasCleanedRef = useRef(false);
 
-  const fetchFundData = useCallback(async (force = false) => {
-    setLoading(true);
+  const fetchFundData = useCallback(
+    async (force = false) => {
+      setLoading(true);
 
-    if (watchlist.length === 0) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-      return;
-    }
+      if (watchlist.length === 0) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        return;
+      }
 
-    const now = Date.now();
-    const codesToFetch = watchlist
-      .filter((f: Fund) => {
-        if (force) return true;
-        if (!f.updateTime) return true;
-        const updateTime = new Date(f.updateTime).getTime();
-        const halfMinutes = 0.5 * 60 * 1000;
-        return now - updateTime > halfMinutes;
-      })
-      .map((f: Fund) => f.code);
+      const now = Date.now();
+      const codesToFetch = watchlist
+        .filter((f: Fund) => {
+          if (force) return true;
+          if (!f.updateTime) return true;
+          const updateTime = new Date(f.updateTime).getTime();
+          const halfMinutes = 0.5 * 60 * 1000;
+          return now - updateTime > halfMinutes;
+        })
+        .map((f: Fund) => f.code);
 
-    if (codesToFetch.length === 0) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-      return;
-    }
+      if (codesToFetch.length === 0) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        return;
+      }
 
-    codesToFetch.forEach((code: string) => fetchingCodesRef.current.add(code));
-
-    try {
-      await fetchMultipleFundData(codesToFetch, (code: string, data: any) => {
-        const fund = watchlist.find((f: Fund) => f.code === code);
-        if (fund && data) {
-          console.log(data);
-
-          updateFund(code, {
-            code: data.code,
-            name: data.name || fund.name,
-            previousNetAssetValue: data.previousNetAssetValue,
-            estimatedNetValue: data.estimatedNetValue,
-            estimatedGrowthRate: data.estimatedGrowthRate,
-            yesterdayChange: data.yesterdayChange,
-            lastWeekGrowthRate: data.lastWeekChange,
-            lastMonthGrowthRate: data.lastMonthChange,
-            updateTime: new Date().toISOString(),
-            navHistory: data.navHistory as NavRecord[],
-          });
-        }
-      });
-
-      setLastUpdate(new Date());
-    } catch (err) {
-      console.error("Fetch error:", err);
-    } finally {
       codesToFetch.forEach((code: string) =>
-        fetchingCodesRef.current.delete(code)
+        fetchingCodesRef.current.add(code),
       );
-      setLoading(false);
-    }
-  }, [watchlist, updateFund]);
+
+      try {
+        await fetchMultipleFundData(codesToFetch, (code: string, data: any) => {
+          const fund = watchlist.find((f: Fund) => f.code === code);
+          if (fund && data) {
+            console.log(data);
+
+            updateFund(code, {
+              code: data.code,
+              name: data.name || fund.name,
+              previousNetAssetValue: data.previousNetAssetValue,
+              estimatedNetValue: data.estimatedNetValue,
+              estimatedGrowthRate: data.estimatedGrowthRate,
+              yesterdayChange: data.yesterdayChange,
+              lastWeekGrowthRate: data.lastWeekChange,
+              lastMonthGrowthRate: data.lastMonthChange,
+              updateTime: new Date().toISOString(),
+              navHistory: data.navHistory as NavRecord[],
+            });
+          }
+        });
+
+        setLastUpdate(new Date());
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
+        codesToFetch.forEach((code: string) =>
+          fetchingCodesRef.current.delete(code),
+        );
+        setLoading(false);
+      }
+    },
+    [watchlist, updateFund],
+  );
 
   useEffect(() => {
     if (!hasCleanedRef.current) {
@@ -363,7 +368,7 @@ export function ValuationTable() {
     if (watchlist.length > 0 && !loading) {
       fetchFundData(true);
     }
-  }, [watchlist]);
+  }, [watchlist.length]);
 
   const handleToggleExpand = useCallback((code: string) => {
     setExpandedFund((prev) => (prev === code ? null : code));
@@ -397,7 +402,7 @@ export function ValuationTable() {
                   "font-['Source_Sans_3'] text-xs cursor-pointer whitespace-nowrap",
                   selectedGroup === "all"
                     ? "bg-news-text dark:bg-paper-400 text-white "
-                    : "border-news-border hover:bg-news-accent "
+                    : "border-news-border hover:bg-news-accent ",
                 )}
               >
                 <Folder className="w-3 h-3 mr-1" />
@@ -413,7 +418,7 @@ export function ValuationTable() {
                     "font-['Source_Sans_3'] text-xs cursor-pointer whitespace-nowrap",
                     selectedGroup === group.id
                       ? "bg-news-text dark:bg-paper-400 text-white"
-                      : "border-news-border hover:bg-news-accent"
+                      : "border-news-border hover:bg-news-accent",
                   )}
                 >
                   <Folder className="w-3 h-3 mr-1" />

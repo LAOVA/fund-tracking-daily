@@ -26,7 +26,13 @@ export function Footer() {
               联系我们
             </h4>
             <p className="text-xs text-news-muted font-['Libre_Baskerville'] leading-relaxed">
-              追基日报编辑部
+              <a
+                href="https://github.com/LAOVA/fund-tracking-daily"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                追基日报编辑部
+              </a>
               <br />
               为您提供最及时的基金资讯
             </p>
