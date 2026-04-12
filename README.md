@@ -4,7 +4,7 @@
 
 采用复古报纸风格设计的基金追踪工具，支持实时估值、持仓管理、收益分析。数据来自天天基金、腾讯财经、东方财富等公开接口，纯前端无需后端服务。
 
-**在线预览**：[https://laova.github.io/fund-tracking-daily）/](https://laova.github.io/fund-tracking-daily/)
+**在线预览**：[https://laova.github.io/fund-tracking-daily](https://laova.github.io/fund-tracking-daily)
 
 ## 功能一览
 
@@ -32,8 +32,8 @@
 
 ```bash
 # 克隆代码
-git clone https://github.com/your-username/fund-tracker.git
-cd fund-tracker
+git clone https://github.com/LAOVA/fund-tracking-daily
+cd fund-tracking-daily
 
 # 安装依赖
 npm install
