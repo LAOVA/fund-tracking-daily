@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-newsreader: "Newsreader", serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-libre: "Libre Baskerville", serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+  --font-source: "Source Sans 3", sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  --radius: 0rem;
+  --background: #fffefb;
+  --foreground: #2d2a26;
+  --card: #ffffff;
+  --card-foreground: #2d2a26;
+  --popover: #ffffff;
+  --popover-foreground: #2d2a26;
+  --primary: #2d2a26;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f0e6;
+  --secondary-foreground: #2d2a26;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b6560;
+  --accent: #f5f0e6;
+  --accent-foreground: #2d2a26;
+  --destructive: #c41e3a;
+  --border: #c9c2b5;
+  --input: #c9c2b5;
+  --ring: #2d2a26;
+  --chart-1: #c41e3a;
+  --chart-2: #228b22;
+  --chart-3: #1565c0;
+  --chart-4: #e65100;
+  --chart-5: #8b0000;
+  --sidebar: #f5f0e6;
+  --sidebar-foreground: #2d2a26;
+  --sidebar-primary: #2d2a26;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f0e6;
+  --sidebar-accent-foreground: #2d2a26;
+  --sidebar-border: #c9c2b5;
+  --sidebar-ring: #2d2a26;
+  --paper-50: #ffffff;
+  --paper-100: #fafafa;
+  --paper-200: #f5f5f5;
+  --paper-300: #e5e5e5;
+  --paper-400: #d4d4d4;
+  --paper-500: #a3a3a3;
+  --paper-600: #737373;
+  --paper-700: #525252;
+  --paper-800: #404040;
+  --paper-900: #262626;
+  --news-bg: #fffefb;
+  --news-accent: #f5f0e6;
+  --news-border: #c9c2b5;
+  --news-text: #2d2a26;
+  --news-muted: #6b6560;
+  --finance-rise: #c41e3a;
+  --finance-fall: #228b22;
+  --finance-neutral: #1565c0;
+  --finance-warning: #e65100;
+  --finance-highlight: #8b0000;
+}
+
+.dark {
+  --background: #1a1917;
+  --foreground: #e8e4df;
+  --card: #242220;
+  --card-foreground: #e8e4df;
+  --popover: #242220;
+  --popover-foreground: #e8e4df;
+  --primary: #e8e4df;
+  --primary-foreground: #1a1917;
+  --secondary: #2d2a26;
+  --secondary-foreground: #e8e4df;
+  --muted: #2d2a26;
+  --muted-foreground: #a09890;
+  --accent: #2d2a26;
+  --accent-foreground: #e8e4df;
+  --destructive: #ef4444;
+  --border: #3d3a36;
+  --input: #3d3a36;
+  --ring: #e8e4df;
+  --chart-1: #f87171;
+  --chart-2: #4ade80;
+  --chart-3: #60a5fa;
+  --chart-4: #fb923c;
+  --chart-5: #f472b6;
+  --sidebar: #242220;
+  --sidebar-foreground: #e8e4df;
+  --sidebar-primary: #e8e4df;
+  --sidebar-primary-foreground: #1a1917;
+  --sidebar-accent: #2d2a26;
+  --sidebar-accent-foreground: #e8e4df;
+  --sidebar-border: #3d3a36;
+  --sidebar-ring: #e8e4df;
+  --paper-50: #242220;
+  --paper-100: #2d2a26;
+  --paper-200: #363330;
+  --paper-300: #3d3a36;
+  --paper-400: #52504d;
+  --paper-500: #6b6763;
+  --paper-600: #8a8580;
+  --paper-700: #a9a49d;
+  --paper-800: #c9c2b5;
+  --paper-900: #e8e4df;
+  --news-bg: #1a1917;
+  --news-accent: #242220;
+  --news-border: #3d3a36;
+  --news-text: #e8e4df;
+  --news-muted: #a09890;
+  --finance-rise: #f87171;
+  --finance-fall: #4ade80;
+  --finance-neutral: #60a5fa;
+  --finance-warning: #fb923c;
+  --finance-highlight: #f87171;
+}
+
+@theme inline {
+  --color-paper-50: var(--paper-50);
+  --color-paper-100: var(--paper-100);
+  --color-paper-200: var(--paper-200);
+  --color-paper-300: var(--paper-300);
+  --color-paper-400: var(--paper-400);
+  --color-paper-500: var(--paper-500);
+  --color-paper-600: var(--paper-600);
+  --color-paper-700: var(--paper-700);
+  --color-paper-800: var(--paper-800);
+  --color-paper-900: var(--paper-900);
+  --color-news-bg: var(--news-bg);
+  --color-news-accent: var(--news-accent);
+  --color-news-border: var(--news-border);
+  --color-news-text: var(--news-text);
+  --color-news-muted: var(--news-muted);
+  --color-finance-rise: var(--finance-rise);
+  --color-finance-fall: var(--finance-fall);
+  --color-finance-neutral: var(--finance-neutral);
+  --color-finance-warning: var(--finance-warning);
+  --color-finance-highlight: var(--finance-highlight);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 报纸风格自定义样式 */
+.drop-cap::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 4em;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.15em;
+  font-weight: 700;
+}
+
+:root .drop-cap::first-letter {
+  color: #8b0000;
+}
+
+.dark .drop-cap::first-letter {
+  color: #f87171;
+}
+
+.news-border {
+  border: 3px solid var(--news-border);
+}
+
+.news-border-thin {
+  border: 1px solid var(--paper-300);
+}
+
+.news-border-bottom {
+  border-bottom: 2px solid var(--news-border);
+}
+
+.column-divider {
+  border-left: 1px solid var(--paper-300);
+}
+
+.headline-underline {
+  border-bottom: 4px solid var(--news-text);
+  padding-bottom: 8px;
+}
+
+.dark .headline-underline {
+  border-bottom-color: var(--news-text);
+}
+
+.kicker {
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.live-indicator {
+  animation: pulse-subtle 2s infinite;
+}
+
+/* 深色模式过渡 */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 深色模式滚动条 */
+.dark::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark::-webkit-scrollbar-track {
+  background: var(--news-accent);
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background: var(--news-border);
+  border-radius: 4px;
+}
+
+.dark::-webkit-scrollbar-thumb:hover {
+  background: var(--news-muted);
+}
+
