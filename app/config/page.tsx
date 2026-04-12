@@ -27,6 +27,7 @@ import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { DataImportExport } from "@/components/funds/DataImportExport";
 
 export default function ConfigPage() {
   const {
@@ -49,7 +50,7 @@ export default function ConfigPage() {
   const [isMoveDialogOpen, setIsMoveDialogOpen] = useState(false);
   const [expandedFund, setExpandedFund] = useState<string | null>(null);
   const [fundToDelete, setFundToDelete] = useState<{ code: string } | null>(
-    null
+    null,
   );
   const [groupToDelete, setGroupToDelete] = useState<{
     id: string;
@@ -93,7 +94,7 @@ export default function ConfigPage() {
       }
       return acc;
     },
-    { totalMarketValue: 0, totalCost: 0, totalProfit: 0 }
+    { totalMarketValue: 0, totalCost: 0, totalProfit: 0 },
   );
 
   const handleDeleteFund = () => {
@@ -150,6 +151,7 @@ export default function ConfigPage() {
               </h1>
             </div>
             <div className="flex flex-wrap items-center gap-2">
+              <DataImportExport />
               <Dialog open={isAddGroupOpen} onOpenChange={setIsAddGroupOpen}>
                 <DialogTrigger asChild>
                   <Button
@@ -290,7 +292,7 @@ export default function ConfigPage() {
                                     ? formatCurrency(
                                         fund.estimatedNetValue,
                                         false,
-                                        4
+                                        4,
                                       )
                                     : "—"}
                                 </span>
@@ -311,7 +313,7 @@ export default function ConfigPage() {
                                   <span
                                     className={cn(
                                       "font-['JetBrains_Mono'] font-bold",
-                                      getChangeColor(profit)
+                                      getChangeColor(profit),
                                     )}
                                   >
                                     {formatCurrency(profit)}
@@ -416,3 +418,4 @@ export default function ConfigPage() {
     </section>
   );
 }
+

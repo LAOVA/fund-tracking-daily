@@ -206,6 +206,17 @@ export default function HoldingsPage() {
 
           <ValuationTable />
 
+          {watchlist.length === 0 && (
+            <div className="py-12 text-center border-t border-news-border">
+              <p className="text-news-muted font-['Libre_Baskerville'] text-lg mb-2">
+                暂无关注基金
+              </p>
+              <p className="text-sm text-news-muted font-['Source_Sans_3']">
+                请在上方搜索框添加基金代码
+              </p>
+            </div>
+          )}
+
           {portfolioSummary.totalCost === 0 && watchlist.length > 0 && (
             <div className="text-center py-12 text-news-muted font-['Source_Sans_3']">
               <p className="text-lg mb-2">暂无持仓信息</p>
