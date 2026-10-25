@@ -326,8 +326,6 @@ export function ValuationTable() {
         await fetchMultipleFundData(codesToFetch, (code: string, data: any) => {
           const fund = watchlist.find((f: Fund) => f.code === code);
           if (fund && data) {
-            console.log(data);
-
             updateFund(code, {
               code: data.code,
               name: data.name || fund.name,

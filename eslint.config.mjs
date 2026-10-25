@@ -18,6 +18,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 本地参考资料副本，不属于本项目源码
+    ".temp/**",
+    ".qoder/**",
   ]),
 ]);
 
